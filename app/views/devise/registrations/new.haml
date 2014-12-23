@@ -1,0 +1,31 @@
+%h2 Team Sign Up
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  .field
+    = f.label :username, "User Name"
+    %br/
+    = f.text_field :username, autofocus: true
+    (Login and URL with no spaces. ex: best_team_ever)
+  .field
+    = f.label :display_name
+    %br/
+    = f.text_field :display_name
+    (Page Title. ex: The Best Team Ever)
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email
+    (Password Recovery. ex: best_team@ever.com)
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "off"
+    - if @validatable
+      (#{@minimum_password_length} characters minimum)
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off"
+  .actions
+    = f.submit "Sign up"
+= render "devise/shared/links"

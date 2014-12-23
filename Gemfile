@@ -14,8 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'turbolinks', '~> 2.5'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'devise', '~> 3.4'
 
 group :development, :test do
   gem 'byebug', '~> 3.5'
