@@ -1,0 +1,28 @@
+/* https://color.adobe.com/create/color-wheel/?copy=true&base=2&rule=Shades&selected=4&name=Copy%20of%20Schnapuni&mode=rgb&rgbvalues=0.19718019861680125,0.1925579561579956,0.6950980392156862,0.12626207358537062,0.12330227375984486,0.44509803921568625,0.2680983236482319,0.26181363855614637,0.9450980392156862,0.282281948654518,0.2756647750357765,0.9950980392156863,0.23973107363565963,0.23411136559688606,0.8450980392156863&swatchOrder=0,1,2,3,4 */
+
+$dark-purple: #201F71;
+$medium-purple: #3231B1;
+$other-purple: #3D3CD7;
+
+
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.navbar-inverse {
+  background-color: $medium-purple;
+  border-color: $dark-purple;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+  background-color: $dark-purple;
+}
+
+h1, .jumbotron h1 {
+  color: $dark-purple;
+}
+
+.jumbotron p {
+  color: $other-purple;
+}
