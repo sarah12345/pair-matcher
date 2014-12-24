@@ -22,7 +22,7 @@
               = link_to 'Home', root_path
             - if user_signed_in?
               %li
-                = link_to 'Configure', user_groups_path(current_user)
+                = link_to 'Configure', configure_user_path(current_user)
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
