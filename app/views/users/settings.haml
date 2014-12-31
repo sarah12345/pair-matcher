@@ -1,0 +1,14 @@
+.page-header
+  %h1
+    #{current_user.display_name.titleize}: Team Settings
+    = button_tag 'Add Group', {:type => 'button', :class => 'pull-right btn btn-lg btn-default', "data-target" => "#group-modal", "data-toggle" => "modal"}
+  = render partial: 'groups/modal', locals: {title: 'New Group', group: Group.new, form_url: user_groups_path(current_user)}
+
+- if current_user.groups.empty?
+  %p There are no groups yet.
+
+- current_user.groups.each do |group|
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title= group.name.titleize
+    .panel-body There are no team members in this group yet.
