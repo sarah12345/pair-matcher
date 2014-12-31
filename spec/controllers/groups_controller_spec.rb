@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe GroupsController do
 
-  let(:user) {User.create(username: 'me', display_name: 'me', email: 'b@b.com', password: 'boobooboo')}
+  let(:user) {create(:user)}
   before do
     sign_in user
   end

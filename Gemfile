@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'mysql2', '~> 0.3'
 gem 'rails', '4.2.0'
 
@@ -18,6 +17,7 @@ gem 'devise', '~> 3.4'
 
 group :development, :test do
   gem 'byebug', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.5'
   gem 'spring', '~> 1.2'
   gem 'web-console', '~> 2.0'
 end
