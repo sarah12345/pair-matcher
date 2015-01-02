@@ -1,5 +1,4 @@
-class User < ActiveRecord::Base
-  #Yes, it's true this should be named team
+class Team < ActiveRecord::Base
 
   has_many :groups
   validates_presence_of :username, :display_name

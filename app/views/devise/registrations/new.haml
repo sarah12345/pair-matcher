@@ -2,7 +2,7 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .field
-    = f.label :username, "User Name"
+    = f.label :username, "Username"
     %br/
     = f.text_field :username, autofocus: true
     (Login and URL with no spaces. ex: best_team_ever)

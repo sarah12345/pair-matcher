@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :teams
 
-  resources :users, path: "/", only: [] do
+  resources :teams, path: "/", only: [] do
     get 'settings', on: :member
     resources :groups, only: [:create, :edit, :destroy]
   end

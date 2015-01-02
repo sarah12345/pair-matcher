@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, :verify_user_requested
+  before_action :authenticate_team!, :verify_team_requested
 
   def create
-    group = Group.new(group_params.merge(user_id: current_user.id))
+    group = Group.new(group_params.merge(team_id: current_team.id))
     if group.save
       flash[:success] = "'#{group.name}' group was created."; flash.keep(:success)
     end
@@ -10,26 +10,26 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    group = Group.find_by(user_id: current_user.id, id: params[:id])
+    group = Group.find_by(team_id: current_team.id, id: params[:id])
     if group
       flash[:success] = "'#{group.name}' group was deleted." if group.destroy
     else
-      flash[:error] = "Requested group for '#{current_user.display_name}' does not exist."
+      flash[:error] = "Requested group for '#{current_team.display_name}' does not exist."
     end
-    redirect_to settings_user_path(current_user)
+    redirect_to settings_team_path(current_team)
   end
 
   private
 
-  def verify_user_requested
-    return if current_user.to_param == params[:user_id]
+  def verify_team_requested
+    return if current_team.to_param == params[:team_id]
     respond_to do |format|
-      errors = ["Unauthorized for user #{params[:user_id]}"]
+      errors = ["Unauthorized for team #{params[:team_id]}"]
       format.json do
         render json: {errors: errors}
       end
       format.html do
-        flash[:error] = errors; redirect_to settings_user_path(current_user)
+        flash[:error] = errors; redirect_to settings_team_path(current_team)
       end
     end
   end

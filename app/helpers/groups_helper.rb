@@ -15,7 +15,7 @@ module GroupsHelper
   end
 
   def delete_group_button(group)
-    url = user_group_path(current_user, group)
+    url = team_group_path(current_team, group)
     button_options = {
       method: :delete,
       data: { confirm: "Are you sure? All team members in this group will also be deleted." },

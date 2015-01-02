@@ -1,14 +1,14 @@
 .page-header
   %h1
-    #{current_user.display_name.titleize}: Team Settings
+    #{current_team.display_name.titleize}: Team Settings
     = add_group_button
 
-  = render partial: 'groups/modal', locals: {title: 'New Group', group: Group.new, form_url: user_groups_path(current_user)}
+  = render partial: 'groups/modal', locals: {title: 'New Group', group: Group.new, form_url: team_groups_path(current_team)}
 
-- if current_user.groups.empty?
+- if current_team.groups.empty?
   %p There are no groups yet.
 
-- current_user.groups.each do |group|
+- current_team.groups.each do |group|
   .panel.panel-default
     .panel-heading
       = delete_group_button(group)

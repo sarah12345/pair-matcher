@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
 
-  belongs_to :user
-  validates_presence_of :name, :user_id
+  belongs_to :team
+  validates_presence_of :name, :team_id
 
 end
