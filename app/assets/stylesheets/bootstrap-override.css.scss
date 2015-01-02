@@ -25,3 +25,8 @@ h1, .jumbotron h1 {
 .jumbotron p {
   color: $other-purple;
 }
+
+/* convert rails flash names to bootstrap classes */
+.alert-error { @extend .alert-danger !optional; }
+.alert-alert { @extend .alert-warning !optional; }
+.alert-notice { @extend .alert-info !optional; }

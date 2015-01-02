@@ -8,6 +8,9 @@ describe GroupsController do
   end
 
   describe '#create' do
+    before do
+      request.env["HTTP_ACCEPT"] = 'application/json'
+    end
     it 'creates a new group under the current user' do
       post :create, {user_id: user.to_param, group: {name: 'new group'}}
       new_group = Group.last
@@ -44,6 +47,29 @@ describe GroupsController do
       response_json = JSON.parse(response.body)
       expect(response_json['errors'].first).to match(/blank/)
     end
-
   end
+
+  describe '#destroy' do
+
+    it 'deletes a group under the current user' do
+      group = create(:group, user: user)
+      expect {
+        delete :destroy, {user_id: user.to_param, id: group.to_param}
+      }.to change{Group.count}.from(1).to(0)
+    end
+
+    it 'does not delete group if group user does not match current user' do
+      group = create(:group)
+      expect {
+        delete :destroy, {user_id: group.user.to_param, id: group.to_param}
+      }.to_not change{Group.count}
+    end
+
+    it 'does not delete group if not found' do
+      expect {
+        delete :destroy, {user_id: user.to_param, id: 'non-existing'}
+      }.to_not change{Group.count}
+    end
+  end
+
 end
