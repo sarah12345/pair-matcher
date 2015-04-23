@@ -20,7 +20,8 @@
           %ul.nav.navbar-nav
             %li.active= link_to 'Home', root_path
             - if team_signed_in?
-              %li= link_to 'Team Settings', settings_team_path(current_team)
+              %li= link_to 'Team', team_path(current_team)
+              %li= link_to 'Groups', team_groups_path(current_team)
           %ul.nav.navbar-nav.navbar-right
             - if team_signed_in?
               %li= link_to('Sign Out', destroy_team_session_path, :method => :delete)

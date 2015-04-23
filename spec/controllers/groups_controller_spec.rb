@@ -18,10 +18,9 @@ describe GroupsController do
       expect(new_group.team_id).to eq(team.id)
     end
 
-    it 'returns empty errors if group was created' do
-      response = post :create, {team_id: team.to_param, group: {name: 'new group'}}
-      response_json = JSON.parse(response.body)
-      expect(response_json['errors']).to be_empty
+    it 'returns success message if group was created' do
+      post :create, {team_id: team.to_param, group: {name: 'new group'}}
+      expect(flash[:success]).to match(/was created/)
     end
 
     it 'does not create group if requested team does not match current team' do
@@ -30,10 +29,9 @@ describe GroupsController do
       }.to_not change{ Group.count }
     end
 
-    it 'returns errors if invalid team requested' do
-      response = post :create, {team_id: 'other id', group: {name: 'new group'}}
-      response_json = JSON.parse(response.body)
-      expect(response_json['errors'].first).to match(/Unauthorized/)
+    it 'populates flash errors if invalid team requested' do
+      post :create, {team_id: 'other id', group: {name: 'new group'}}
+      expect(flash[:error]).to match(/Unauthorized/)
     end
 
     it 'does not create group if invalid group params' do
@@ -43,9 +41,8 @@ describe GroupsController do
     end
 
     it 'returns errors if group not created' do
-      response = post :create, {team_id: team.to_param, group: {name: ''}}
-      response_json = JSON.parse(response.body)
-      expect(response_json['errors'].first).to match(/blank/)
+      post :create, {team_id: team.to_param, group: {name: ''}}
+      expect(flash[:error]).to match(/Name can't be blank/)
     end
   end
 

@@ -1,37 +1,32 @@
 class GroupsController < ApplicationController
-  before_action :authenticate_team!, :verify_team_requested
+  before_action :verify_team_requested
 
   def create
     group = Group.new(group_params.merge(team_id: current_team.id))
     if group.save
-      flash[:success] = "'#{group.name}' group was created."; flash.keep(:success)
+      flash.now[:success] = "Group '#{group.name}' was created."
+    else
+      flash.now[:error] = "Group was not created. #{group.errors.full_messages.join(', ')}."
     end
-    render json: {errors: group.errors.full_messages}.to_json
+    render :index
   end
 
   def destroy
     group = Group.find_by(team_id: current_team.id, id: params[:id])
     if group
-      flash[:success] = "'#{group.name}' group was deleted." if group.destroy
+      flash.now[:success] = "Group '#{group.name}' was deleted." if group.destroy
     else
-      flash[:error] = "Requested group for '#{current_team.display_name}' does not exist."
+      flash.now[:error] = "Requested group for '#{current_team.display_name}' does not exist."
     end
-    redirect_to settings_team_path(current_team)
+    render :index
   end
 
   private
 
   def verify_team_requested
     return if current_team.to_param == params[:team_id]
-    respond_to do |format|
-      errors = ["Unauthorized for team #{params[:team_id]}"]
-      format.json do
-        render json: {errors: errors}
-      end
-      format.html do
-        flash[:error] = errors; redirect_to settings_team_path(current_team)
-      end
-    end
+    flash[:error] = "Unauthorized for team #{params[:team_id]}"
+    redirect_to team_groups_path(current_team)
   end
 
   def group_params
