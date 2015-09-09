@@ -16,18 +16,18 @@
             %span{class: "icon-bar"}
             %span{class: "icon-bar"}
           = link_to 'Pair Matcher', root_path, class: 'navbar-brand'
-        #navbar.navbar-collapse.collapse
+        #navbar.navbar-collapse.collapse{"data-nav-group" => controller_name}
           %ul.nav.navbar-nav
-            %li.active= link_to 'Home', root_path
+            %li.welcome= link_to 'Home', root_path
             - if team_signed_in?
-              %li= link_to 'Team', team_path(current_team)
-              %li= link_to 'Groups', team_groups_path(current_team)
+              %li.teams= link_to 'Team', team_path(current_team)
+              %li.groups.members= link_to 'Groups', team_groups_path(current_team)
           %ul.nav.navbar-nav.navbar-right
             - if team_signed_in?
               %li= link_to('Sign Out', destroy_team_session_path, :method => :delete)
             - else
-              %li= link_to('Sign In', new_team_session_path)
-              %li= link_to('Sign Up', new_team_registration_path)
+              %li.sessions= link_to('Sign In', new_team_session_path)
+              %li.registrations= link_to('Sign Up', new_team_registration_path)
     .container.theme-showcase{'role' => 'main'}
 
       = flash_messages
