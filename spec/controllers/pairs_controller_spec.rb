@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe TeamsController do
+describe PairsController do
 
   let(:team) {create(:team)}
   before do
@@ -8,14 +8,14 @@ describe TeamsController do
   end
 
   describe "#index" do
-    it "renders team page if authorized" do
-      get :show, id: team.username
-      expect(response).to render_template(:show)
+    it "renders pairs page if authorized" do
+      get :index, team_id: team.username
+      expect(response).to render_template(:index)
     end
 
     it "redirects if unauthorized team" do
-      get :show, id: 'other team'
-      expect(response).to redirect_to(team_path(team))
+      get :index, team_id: 'other team'
+      expect(response).to redirect_to(team_pairs_path(team))
     end
   end
 
@@ -25,7 +25,7 @@ describe TeamsController do
         to receive(:generate_pairs).
         with(team.id).
         and_return(pairs = double)
-      get :match_pairs, id: team.username
+      get :match_pairs, team_id: team.username
       expect(assigns[:pairs]).to eq(pairs)
     end
   end

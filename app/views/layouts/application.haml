@@ -18,10 +18,10 @@
           = link_to 'Pair Matcher', root_path, class: 'navbar-brand'
         #navbar.navbar-collapse.collapse{"data-nav-group" => controller_name}
           %ul.nav.navbar-nav
-            %li.welcome= link_to 'Home', root_path
+            %li.welcome= link_to 'Team Home', root_path
             - if team_signed_in?
-              %li.teams= link_to 'Team', team_path(current_team)
-              %li.groups.members= link_to 'Groups', team_groups_path(current_team)
+              %li.pairs= link_to 'Pairs', team_pairs_path(current_team)
+              %li.groups.members= link_to 'Members/Groups', team_groups_path(current_team)
           %ul.nav.navbar-nav.navbar-right
             - if team_signed_in?
               %li= link_to('Sign Out', destroy_team_session_path, :method => :delete)
