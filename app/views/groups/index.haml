@@ -12,7 +12,11 @@
   .panel.panel-default
     .panel-heading
       = delete_group_button(group)
+      = add_member_button(group)
       %h3.panel-title
         #{group.name.titleize}
     .panel-body
-      There are no team members in this group yet.
+      = render partial: 'members/modal', locals: {title: 'New Member', member: Member.new, form_url: team_group_members_path(current_team, group), group: group}
+      - if group.members.empty?
+        There are no team members in this group yet.
+      = render partial: 'groups/members', locals: {members: group.members}

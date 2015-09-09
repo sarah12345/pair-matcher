@@ -30,3 +30,7 @@ h1, .jumbotron h1 {
 .alert-error { @extend .alert-danger !optional; }
 .alert-alert { @extend .alert-warning !optional; }
 .alert-notice { @extend .alert-info !optional; }
+
+.stack-right {
+  margin-right: 5px;
+}

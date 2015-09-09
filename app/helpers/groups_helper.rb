@@ -1,5 +1,19 @@
 module GroupsHelper
 
+  def add_member_button(group)
+    button_options = {
+      :type => 'button',
+      :class => 'pull-right btn btn-xs btn-default stack-right',
+      "data-target" => "#member-modal-#{group.id}",
+      "data-toggle" => "modal"
+    }
+    classes = "glyphicon glyphicon-plus"
+    button_tag(button_options) do
+      content_tag(:span, '', 'class' => classes, 'aria-hidden' => 'true') + ' ' +
+      content_tag(:span, 'add member')
+    end
+  end
+
   def add_group_button
     button_options = {
       :type => 'button',
