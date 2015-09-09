@@ -15,7 +15,7 @@ class PairMatcherService
     def generate_pair(members)
       member1 = pull_random_member_from_list(members)
       member2 = pull_random_member_from_list(members)
-      [member1, member2]
+      Pair.new(member1: member1, member2: member2)
     end
 
     def pull_random_member_from_list(members)

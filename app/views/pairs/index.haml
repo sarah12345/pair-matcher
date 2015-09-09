@@ -8,9 +8,9 @@
     #pairs
       - @pairs.each do |pair|
         .pair
-          .member1= pair.first.name
+          .member1= pair.member1.try(:name)
           .connector AND
-          .member2= pair.last.name
+          .member2= pair.member2.try(:name)
 - else
   %p
     Let's match some pairs.
