@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'mysql2', '~> 0.3'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
 
 gem 'autoprefixer-rails', '~> 4.0'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'haml', '~> 4.0'
-gem 'haml-rails', '~> 0.6'
+gem 'haml', '~> 4.0.7'
+gem 'haml-rails', '~> 0.9.0'
 gem 'jquery-rails', '~> 4.0'
 gem 'jquery-turbolinks', '~> 2.1'
 gem 'sass-rails', '~> 5.0'
