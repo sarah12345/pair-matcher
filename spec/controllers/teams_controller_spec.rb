@@ -18,4 +18,15 @@ describe TeamsController do
       expect(response).to redirect_to(team_path(team))
     end
   end
+
+  describe "#match_pairs" do
+    it "assigns the matched pairs" do
+      expect(PairMatcherService).
+        to receive(:generate_pairs).
+        with(team.id).
+        and_return(pairs = double)
+      get :match_pairs, id: team.username
+      expect(assigns[:pairs]).to eq(pairs)
+    end
+  end
 end

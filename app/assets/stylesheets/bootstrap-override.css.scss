@@ -34,3 +34,36 @@ h1, .jumbotron h1 {
 .stack-right {
   margin-right: 5px;
 }
+
+#pairs {
+  .pair {
+    height: 40px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  .pair:nth-child(even) {
+    background-color: #eeeeee;
+  }
+  .pair:nth-child(odd) {
+    background-color: #dcdcdc;
+  }
+  .member1 {
+    clear: both;
+    float: left;
+    padding: 10px;
+    height: inherit;
+  }
+  .member2 {
+    float: left;
+    padding: 10px;
+    height: inherit;
+  }
+  .connector {
+    width: 60px;
+    float: left;
+    color: $medium-purple;
+    padding: 10px;
+    height: inherit;
+  }
+}
+

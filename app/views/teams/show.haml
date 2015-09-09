@@ -2,4 +2,16 @@
   %h1
     #{current_team.display_name.titleize}
 
-%p Let's match some pairs.
+- if @pairs.present?
+  %p
+    Here are your new pairs:
+    #pairs
+      - @pairs.each do |pair|
+        .pair
+          .member1= pair.first.name
+          .connector AND
+          .member2= pair.last.name
+- else
+  %p
+    Let's match some pairs.
+    =link_to "GO!", match_pairs_team_path(current_team.to_param)

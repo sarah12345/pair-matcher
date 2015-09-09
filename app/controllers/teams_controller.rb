@@ -1,6 +1,11 @@
 class TeamsController < ApplicationController
   before_action :verify_team_requested
 
+  def match_pairs
+    @pairs = PairMatcherService.generate_pairs(current_team.id)
+    render :show
+  end
+
   private
 
   def verify_team_requested
