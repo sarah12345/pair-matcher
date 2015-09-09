@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'mysql2', '~> 0.3'
+gem 'mysql2', '~> 0.3.18' #this lower version was needed for rails 4.2.4
 gem 'rails', '4.2.4'
 
 gem 'autoprefixer-rails', '~> 4.0'
